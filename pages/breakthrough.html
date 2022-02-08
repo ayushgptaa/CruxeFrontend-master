@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakthrough</title>
+    <link rel="stylesheet" href="../Public/css/pages.css" />
+    <link rel="icon" href="../Public/images/logo.png" />
+    <!-- <link rel="stylesheet" href="../Public/css/responsive.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="logo">
+        <div class="cruxe-logo">
+          <a href="../index.html">
+            <img
+              src="../Public/images/cruxe no collar website logo white.png"
+              alt=""
+          /></a>
+        </div>
+
+        <div class="social-logo">
+          <a href=""><i class="fab fa-instagram"></i></a>
+          <a href=""><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="navbar">
+        <ul class="ul-list">
+          <li class="ul-list-li">
+            <a href="./astronomy.html">astronomy</a>
+          </li>
+          <li class="ul-list-li">
+            <a href="./technology.html">technology</a>
+          </li>
+          <li class="ul-list-li">
+            <a href="./economy.html">economics</a>
+          </li>
+          <li class="ul-list-li">
+            <a href="./entertainment.html">history</a>
+          </li>
+          <li class="ul-list-li"><a href="./nature.html">sports</a></li>
+          <li class="ul-list-li"><a href="./startup.html">stocks</a></li>
+
+          <li class="dropdown">
+            <div><span> More</span> <i class="fas fa-caret-down"></i></div>
+            <div class="dropdown-container">
+              <ul>
+                <li><a href="./movies.html">movies/series/netflix</a></li>
+                <li><a href="./food.html">food and health</a></li>
+                <li><a href="./whatis.html">what is</a></li>
+                <li><a href="./howto.html">how to</a></li>
+                <li><a href="./breakthrough.html">breakthrough</a></li>
+              </ul>
+            </div>
+          </li>
+          <div id="menu-container">
+            <div id="menu-wrapper">
+              <div id="hamburger-menu">
+                <span></span><span></span><span></span>
+              </div>
+              <!-- hamburger-menu -->
+            </div>
+            <!-- menu-wrapper -->
+
+            <ul class="menu-list accordion">
+              <li id="nav1" class="toggle accordion-toggle">
+                <a class="menu-link" href="./history.html">history</a>
+              </li>
+              <!-- menu-submenu accordon-content-->
+              <li id="nav2" class="toggle accordion-toggle">
+                <a class="menu-link" href="./sports.html">sports</a>
+              </li>
+              <!-- menu-submenu accordon-content-->
+              <li id="nav3" class="toggle accordion-toggle">
+                <a class="menu-link" href="./stocks.html">stocks</a>
+              </li>
+              <li id="nav1" class="toggle accordion-toggle">
+                <a class="menu-link" href="./movies.html">movies</a>
+              </li>
+
+              <li id="nav3" class="toggle accordion-toggle">
+                <a class="menu-link" href="./food.html">Food</a>
+              </li>
+              <li id="nav3" class="toggle accordion-toggle">
+                <a class="menu-link" href="./whatis.html">what is</a>
+              </li>
+              <li id="nav3" class="toggle accordion-toggle">
+                <a class="menu-link" href="./pages/howto.html">how to</a>
+              </li>
+              <li id="nav3" class="toggle accordion-toggle">
+                <a class="menu-link" href="./breakthrough.html">breakthrough</a>
+              </li>
+            </ul>
+            <!-- menu-list accordion-->
+          </div>
+          <!-- menu-container -->
+        </ul>
+      </div>
+    </nav>
+    <div class="page-top-heading-container">
+      <div class="page-top-pick-heading">
+        <p>breakthrough</p>
+      </div>
+    </div>
+    <div class="pages-cards-container" id="breakthrough-container"></div>
+
+    <script src="../js/app.js "></script>
+    <script>
+      const pagecontainer = document.getElementById("breakthrough-container");
+
+      async function getdataentpage() {
+        let urlpage = "https://www.apicruxe.xyz/breakthrough_all";
+        let response = await fetch(urlpage);
+        if (!response.ok) {
+          console.log("error");
+        } else {
+          let pgdata = await response.json();
+          const html = pgdata
+            .map((info) => {
+              return `
+        <div class="card">
+        <div class="img-card">
+          <img src="${info.img_url}" alt="" />
+        </div>
+        <div class="cardtext-container">
+          <div class="card-content">
+            <div class="classtext-headingpara">
+              <p>
+              ${info.title}
+              </p>
+            </div>
+            <div class="classtext-content">
+              <p>
+              ${info.summary}
+              </p>
+            </div>
+            <div class="read-more">
+               <a href="${info.article_link}" target="_blank">Read more....</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        `;
+            })
+            .join("");
+          pagecontainer.innerHTML = html;
+        }
+      }
+
+      getdataentpage();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        function slideMenu() {
+          var activeState = $("#menu-container .menu-list").hasClass("active");
+          $("#menu-container .menu-list").animate(
+            { right: activeState ? "0%" : "-100%" },
+            800
+          );
+        }
+        $("#menu-wrapper").click(function (event) {
+          event.stopPropagation();
+          $("#hamburger-menu").toggleClass("open");
+          $("#menu-container .menu-list").toggleClass("active");
+          slideMenu();
+
+          $("body").toggleClass("overflow-hidden");
+        });
+
+        $(".menu-list")
+          .find(".accordion-toggle")
+          .click(function () {
+            $(this).next().toggleClass("open").slideToggle("fast");
+            $(this)
+              .toggleClass("active-tab")
+              .find(".menu-link")
+              .toggleClass("active");
+
+            $(".menu-list .accordion-content")
+              .not($(this).next())
+              .slideUp("fast")
+              .removeClass("open");
+            $(".menu-list .accordion-toggle")
+              .not(jQuery(this))
+              .removeClass("active-tab")
+              .find(".menu-link")
+              .removeClass("active");
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Cruxe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serviceworker.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "server":"http-server ./ -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/analyticware/Cruxe_Frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/analyticware/Cruxe_Frontend/issues"
+  },
+  "homepage": "https://github.com/analyticware/Cruxe_Frontend#readme"
+}
